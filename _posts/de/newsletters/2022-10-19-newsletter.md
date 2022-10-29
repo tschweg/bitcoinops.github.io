@@ -1,23 +1,24 @@
 ---
 title: 'Bitcoin Optech Newsletter #222'
-permalink: /en/newsletters/2022/10/19/
+permalink: /de/newsletters/2022/10/19/
 name: 2022-10-19-newsletter-de
 slug: 2022-10-19-newsletter-de
 type: newsletter
 layout: newsletter
 lang: de
 ---
-This week's newsletter describes the block parsing bug affecting BTCD
-and LND last week, summarizes discussion about a planned Bitcoin Core
-feature change related to replace by fee, outlines research about
-validity rollups on Bitcoin, shares an announcement about a
-vulnerability in the draft BIP for MuSig2, examines a proposal to reduce
-the minimum size of an unconfirmed transaction that Bitcoin Core will
-relay, and links to an update of the BIP324 proposal for a version 2
-encrypted transport protocol for Bitcoin.  Also included are our regular
-sections with summaries of changes to services and client software,
-announcements of new releases and release candidates, and descriptions
-of notable merges to popular Bitcoin infrastructure projects.
+Der Newsletter dieser Woche beschreibt den Blockparsing-Bug, von dem BTCD und
+LND letzte Woche betroffen waren, fasst die Diskussion über eine geplante
+Bitcoin Core Feature-Änderung im Zusammenhang mit Replace-by-Fee zusammen,
+umschreibt die Forschung an Validitäts-Rollups in Bitcoin, enthält eine
+Ankündigung über eine Schwachstelle im BIP-Entwurf für MuSig2, untersucht einen
+Vorschlag zur Reduzierung der Mindestgröße unbestätigter Transaktionen,
+die Bitcoin Core weiterleitet, und verlinkt auf ein Update des BIP324-Vorschlags
+für ein verschlüsseltes Transportprotokoll für Bitcoin in Version 2. Ebenfalls
+enthalten sind unsere regelmäßigen Abschnitte mit Zusammenfassungen beliebter
+Fragen und Antworten aus dem Bitcoin Stack Exchange, eine Liste neuer
+Software-Releases und Release-Kandidaten, sowie erwähnenswerte Änderungen an
+beliebten Bitcoin Infrastrukturprojekten.
 
 ## News
 
@@ -226,35 +227,35 @@ Interface (HWI)][hwi repo], [Rust Bitcoin][rust bitcoin repo], [BTCPay
 Server][btcpay server repo], [BDK][bdk repo], [Bitcoin Improvement
 Proposals (BIPs)][bips repo], und [Lightning BOLTs][bolts repo].*
 
-- [Bitcoin Core #23549][] adds the `scanblocks` RPC that identifies
-  relevant blocks in a given range for a provided set of [descriptors][topic descriptors].
-  The RPC is only available on nodes that maintain a [compact block
-  filter][topic compact block filters] index (`-blockfilterindex=1`).
+- [Bitcoin Core #23549][] fügt den `scanblocks` RPC hinzu, der relevante Blöcke
+  in einem gegebenen Bereich für ein gegebenes Set von [Deskriptoren][topic descriptors]
+  identifiziert. Der RPC ist nur auf Knoten verfügbar, die einen kompakten
+  Blockfilterindex (`-blockfilterindex=1`) pflegen.
 
-- [Bitcoin Core #25412][] adds a new `/deploymentinfo` REST endpoint which
-  contains information about soft fork deployments, similar to the
-  existing `getdeploymentinfo` RPC.
+- [Bitcoin Core #25412][] fügt einen neuen `/deploymentinfo` REST Endpunkt hinzu,
+  der Informationen über Soft Fork Deployments enthält, ähnlich dem bestehenden
+  `getdeploymentinfo` RPC.
 
-- [LND #6956][] allows configuring the minimum channel reserve enforced
-  on payments received from a channel's partner.  A node won't accept a
-  payment from its channel partner if that would lower the amount of the
-  partner's funds in the channel below the reserve, which is 1% by
-  default in LND.  This ensures the partner will need to pay at least
-  the reserve amount as a penalty if it attempts to close a channel in a
-  outdated state.  This merged PR allows lowering or raising the reserve
-  amount.
+- [LND #6956][] ermöglicht die Konfiguration der minimalen Channel-Reserve, die
+  bei Zahlungen von einem Channel-Partner erzwungen wird. Ein Knoten
+  akzeptiert keine Zahlung von seinem Channel-Partner, wenn dadurch der Betrag
+  der Mittel des Partners im Channel unter diese Reserve sinkt; in LND beträgt
+  sie standardmäßig 1 %. Dadurch wird sichergestellt, dass der Partner
+  mindestens den Reservebetrag als Strafe zahlen muss, wenn er versucht, einen
+  Channel in einem veralteten Zustand zu schließen. Dieser zusammengefasste PR
+  erlaubt es, den Reservebetrag zu reduzieren oder zu erhöhen.
 
-- [LND #7004][] updates the version of the BTCD library used by LND,
-  fixing the security vulnerability previously described in this
-  newsletter.
+- [LND #7004][] aktualisiert die von LND verwendete Version der BTCD-Bibliothek
+  und behebt die zuvor in diesem Newsletter beschriebene Sicherheitslücke.
 
-- [LDK #1625][] begins tracking information about the liquidity of
-  distant channels which the local node has attempted to route payments
-  through.  The local node stores information about the size of payments
-  which have either successfully been routed through the remote node or
-  which failed due to apparent insufficient funds.  This information,
-  adjusted for its age, is used as input for probabilistic pathfinding
-  (see [Newsletter #163][news163 pr]).
+- [LDK #1625][] beginnt mit der Verfolgung von Informationen über die
+  Liquidität von entfernten Channels, über die der lokale Knoten versucht hat,
+  Zahlungen zu leiten. Der lokale Knoten speichert Informationen über den
+  Umfang der Zahlungen, die entweder erfolgreich über den entfernten Knoten
+  geleitet wurden oder die aufgrund offensichtlich unzureichender Mittel
+  fehlgeschlagen sind. Diese um ihr Alter bereinigten Informationen werden
+  als Input für die probabilistische Pfadfindung verwendet
+  (siehe [Newsletter #163][news163 pr]).
 
 ## Footnotes
 
