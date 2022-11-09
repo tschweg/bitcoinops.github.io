@@ -136,9 +136,10 @@ Bitcoin infrastructure software.
 
 ## Bitcoin Core PR Review Club
 
-*In this monthly section, we summarize a recent [Bitcoin Core PR Review Club][]
-meeting, highlighting some of the important questions and answers.  Click on a
-question below to see a summary of the answer from the meeting.*
+*In dieser monatlichen Rubrik fassen wir ein kürzlich stattgefundenes Treffen
+des [Bitcoin Core PR Review Club][] zusammen und stellen einige der wichtigsten
+Fragen und Antworten vor. Klicke unten auf eine Frage, um eine Zusammenfassung
+der Antwort anzusehen.*
 
 [Relax MIN_STANDARD_TX_NONWITNESS_SIZE to 65 non-witness bytes][review club 26265]
 is a PR by instagibbs that relaxes the mempool policy's non-witness transaction size
@@ -227,11 +228,11 @@ discussed during the meeting.
   a6link="https://bitcoincore.reviews/26265#l-124"
 %}
 
-## Releases and release candidates
+## Releases und Release-Kandidaten
 
-*New releases and release candidates for popular Bitcoin infrastructure
-projects.  Please consider upgrading to new releases or helping to test
-release candidates.*
+*Neue Releases und Release-Kandidaten für beliebte Bitcoin
+Infrastrukturprojekte. Bitte erwäge auf die neuen Versionen
+zu wechseln oder beim Testen von Release candidates auszuhelfen.*
 
 - [Rust Bitcoin 0.28.2][] is a minor release containing a fixes for bugs
   that could "cause some specific transactions and/or blocks to fail to
@@ -251,14 +252,14 @@ release candidates.*
   encourages any services that might be affected to evaluate the RC and
   participate in the public discussion.
 
-## Notable code and documentation changes
+## Nennenswerte Code- und Dokumentationsänderungen
 
-*Notable changes this week in [Bitcoin Core][bitcoin core repo], [Core
-Lightning][core lightning repo], [Eclair][eclair repo], [LDK][ldk repo],
+*Erwähnenswerte Änderungen diese Woche in [Bitcoin Core][bitcoin core repo],
+[Core Lightning][core lightning repo], [Eclair][eclair repo], [LDK][ldk repo],
 [LND][lnd repo], [libsecp256k1][libsecp256k1 repo], [Hardware Wallet
 Interface (HWI)][hwi repo], [Rust Bitcoin][rust bitcoin repo], [BTCPay
 Server][btcpay server repo], [BDK][bdk repo], [Bitcoin Improvement
-Proposals (BIPs)][bips repo], and [Lightning BOLTs][bolts repo].*
+Proposals (BIPs)][bips repo], und [Lightning BOLTs][bolts repo].*
 
 - [Bitcoin Core #26419][] adds context to the validation interface logs
   detailing why a transaction is removed from the mempool.
