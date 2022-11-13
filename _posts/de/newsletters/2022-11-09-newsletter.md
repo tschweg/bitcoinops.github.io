@@ -234,23 +234,23 @@ discussed during the meeting.
 Infrastrukturprojekte. Bitte erwäge auf die neuen Versionen
 zu wechseln oder beim Testen von Release candidates auszuhelfen.*
 
-- [Rust Bitcoin 0.28.2][] is a minor release containing a fixes for bugs
-  that could "cause some specific transactions and/or blocks to fail to
-  deserialize. No known such transactions exist on any public
-  blockchain."
+- [Rust Bitcoin 0.28.2][] ist ein kleinerer Release, der Fehler behebt, die
+  "dazu führen können, dass einige bestimmte Transaktionen und/oder Blöcke nicht
+  de-serialisiert werden können. Es sind keine derartigen Transaktionen auf
+  einer öffentlichen Blockchain bekannt."
 
-- [Bitcoin Core 24.0 RC3][] is a release candidate for the
-  next version of the network's most widely used full node
-  implementation.  A [guide to testing][bcc testing] is available.
+- [Bitcoin Core 24.0 RC3][] ist ein Release Candidate für die nächste Version
+  der am weitesten verbreiteten Full-Node-Implementierung des Netzwerks. Eine
+  [Anleitung zum Testen][bcc testing] ist verfügbar.
 
-  **Warning:** this release candidate includes the `mempoolfullrbf`
-  configuration option which several protocol and application developers
-  believe could lead to problems for merchant services as described in
-  this newsletter and previous newsletters [#222][news222 rbf] and
-  [#223][news223 rbf].  It could also cause problems for transaction
-  relay as described in [Newsletter #224][news224 rbf].  Optech
-  encourages any services that might be affected to evaluate the RC and
-  participate in the public discussion.
+  **Warnung:** Dieser Release Candidate enthält die Konfigurationsoption
+  `mempoolfullrbf`, von der mehrere Protokoll- und Anwendungsentwickler glauben,
+  dass sie zu Problemen für Händlerdienste führen könnte; wie in den Newslettern
+  [#222][news222 rbf] and [#223][news223 rbf] beschrieben. Es könnte auch zu
+  Problemen bei der Transaktionsweiterleitung kommen, wie im
+  [Newsletter #224][news224 rbf] beschrieben. Optech fordert alle Dienste auf,
+  die davon betroffen sein könnten, den RC zu evaluieren und sich an der
+  öffentlichen Diskussion zu beteiligen.
 
 ## Nennenswerte Code- und Dokumentationsänderungen
 
