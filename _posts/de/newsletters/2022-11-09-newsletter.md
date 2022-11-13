@@ -261,69 +261,74 @@ Interface (HWI)][hwi repo], [Rust Bitcoin][rust bitcoin repo], [BTCPay
 Server][btcpay server repo], [BDK][bdk repo], [Bitcoin Improvement
 Proposals (BIPs)][bips repo], und [Lightning BOLTs][bolts repo].*
 
-- [Bitcoin Core #26419][] adds context to the validation interface logs
-  detailing why a transaction is removed from the mempool.
+- [Bitcoin Core #26419][] fügt den Logs der Validierungsschnittstelle Kontext
+  hinzu, der angibt, warum eine Transaktion aus dem Mempool entfernt wurde.
 
-- [Eclair #2404][] adds support for Short Channel IDentifier (SCID)
-  aliases and [zero-conf channels][topic zero-conf channels]
-  even for channel state commitments that don't use [anchor
-  outputs][topic anchor outputs].
+- [Eclair #2404][] fügt Unterstützung für Short Channel IDentifier (SCID)-Aliase
+  und [Zero-Conf-Kanäle][topic zero-conf channels] hinzu; auch für
+  Kanalstatusverpflichtungen, die keine [Ankerausgaben][topic anchor outputs]
+  verwenden.
 
-- [Eclair #2468][] implements [BOLTs #1032][], allowing the ultimate receiver of a payment ([HTLC][topic
-  HTLC]) to accept a greater amount than they requested and with a
-  longer time before it expires than they requested.  Previously,
-  Eclair-based receivers adhered to [BOLT4][]'s requirement that the
-  amount and expiry delta equal exactly the amount they requested, but
-  that exactitude meant a forwarding node could probe the next hop to
-  see if it was the final receiver by changing either value by the
-  slightest bit.
+- [Eclair #2468][] implementiert [BOLTs #1032][] und ermöglicht es dem
+  endgültigen Empfänger einer Zahlung ([HTLC][topic HTLC]), einen höheren Betrag
+  als angefordert und mit einer längeren Zeitspanne bis zur Verfallszeit als
+  angefordert zu akzeptieren. Bisher hielten sich Eclair-basierte Empfänger an
+  die Anforderung von [BOLT4][], dass der Betrag und das Verfallsdelta genau dem
+  angeforderten Betrag entsprechen müssen. Diese Exaktheit hatte zur Folge, dass
+  ein Weiterleitungsknoten den nächsten Hop abfragen konnte, um festzustellen,
+  ob er der endgültige Empfänger war, indem er einen der beiden Werte
+  geringfügig änderte.
 
-- [Eclair #2469][] extends the amount of time it asks the last
-  forwarding node to give the next hop to settle a payment.  The last
-  forwarding node shouldn't know it's the last forwarding node---it
-  shouldn't know that the next hop is the receiver of the payment.  The
-  extra settlement time implies that the next hop may be a routing node
-  rather than the receiver.  The PR description for this feature states
-  that Core Lightning and LDK already implement this behavior.  See also
-  the description for Eclair #2468 above.
+- [Eclair #2469][] verlängert die Zeitspanne, die der letzte
+  Weiterleitungsknoten dem nächsten Hop geben muss, um eine Zahlung zu
+  begleichen. Der letzte Weiterleitungsknoten sollte nicht wissen, dass er der
+  letzte Weiterleitungsknoten ist ---er sollte nicht wissen, dass der nächste
+  Hop der Empfänger der Zahlung ist. Die zusätzliche Abwicklungszeit impliziert,
+  dass der nächste Hop ein Routing-Knoten und nicht der Empfänger sein kann. Die
+  PR-Beschreibung für diese Funktion hält fest, dass Core Lightning und LDK
+  dieses Verhalten bereits implementieren. Siehe auch die Beschreibung für
+  Eclair #2468 weiter oben.
 
-- [Eclair #2362][] adds support for the `dont_forward` flag for channel
-  updates from [BOLTs #999][].  Channel updates change the parameters of
-  a channel and are often gossiped to inform other nodes on the network
-  about how to use the channel, but when a channel update contains this
-  flag, it should not be forwarded to other nodes.
+- [Eclair #2362][] fügt Unterstützung für das `dont_forward` Flag für
+  Kanalaktualisierungen von [BOLTs #999][] hinzu. Kanalaktualisierungen ändern
+  die Parameter eines Kanals und werden oft weitergegeben, um andere Knoten im
+  Netzwerk Nutzungsanweisungen für den Kanal mitzuteilen. Wenn eine
+  Kanalaktualisierung dieses Flag enthält, sollte sie nicht an andere Knoten
+  weitergeleitet werden
 
-- [Eclair #2441][] allows Eclair to begin receiving onion-wrapped error
-  messages of any size.  [BOLT2][] currently recommends 256 byte errors,
-  but doesn't forbid longer error messages and [BOLTs #1021][] is open to
-  encourage use of 1024-byte error messages encoded using LN's modern
-  Type-Length-Value (TLV) semantics.
+- [Eclair #2441][] erlaubt Eclair den Empfang von Onion-wrapped Fehlermeldungen
+  beliebiger Größe. [BOLT2][] empfiehlt derzeit 256-Byte-Fehler, verbietet aber
+  nicht längere Fehlermeldungen. [BOLTs #1021][] ist eröffnet und ermutigt die
+  Verwendung von 1024-Byte-Fehlermeldungen, die mit der modernen
+  Type-Length-Value (TLV)-Semantik von LN kodiert sind.
 
-- [LND #7100][] updates LND to use the latest version of BTCD (as a
-  library), fixing the block parsing bug described in the *news* section
-  above.
+- [LND #7100][] aktualisiert LND, mit der neuesten Version von BTCD (als
+  Bibliothek), und behebt den Blockparsing-Fehler, der im
+  *News*-Abschnitt oben beschrieben wurde.
 
-- [LDK #1761][] adds a `PaymentID` parameter to methods for sending
-  payments which callers can use to prevent sending multiple identical
-  payments.  Additionally, LDK may now continue trying to resend a
-  payment indefinitely, rather than the previous behavior of ceasing
-  retries after a few blocks of repeated failures; the `abandon_payment`
-  method may be used to prevent further retrying.
+- [LDK #1761][] fügt den Methoden zum Senden von Zahlungen einen
+  `PaymentID`-Parameter hinzu, den der Aufrufer verwenden kann, um das Senden
+  mehrerer identischer Zahlungen zu verhindern. Außerdem kann LDK nun unbegrenzt
+  weiter versuchen, eine Zahlung erneut zu senden, anstatt wie bisher nach
+  einigen Blöcken mit wiederholten Fehlversuchen die Zahlung abzubrechen; die
+  Methode `abandon_payment` kann verwendet werden, um weitere Versuche zu
+  verhindern.
 
-- [LDK #1743][] provides a new `ChannelReady` event when a channel
-  becomes ready to use.  Notably, the event may be issued after a
-  channel has received a suitable number of confirmations, or it may be
-  issued immediately in the case of a [zero-conf channel][topic zero-conf channels].
+- [LDK #1743][] bietet einen neuen `ChannelReady`-Event, wenn ein Kanal zur
+  Verwendung bereit ist.Erwähnenswert ist, dass der Event ausgelöst werden kann,
+  nachdem ein Kanal eine angemessene Anzahl Bestätigungen erhalten hat, oder
+  aber er kann sofort ausgelöst werden, für den Fall dass es sich um einen
+  [Zero-Conf-Kanal][topic zero-conf channels] handelt.
 
-- [BTCPay Server #4157][] adds opt-in support for a new version of the
-  checkout interface.  See the PR for screenshots and video previews.
+- [BTCPay Server #4157][] fügt Opt-in-Unterstützung für eine neue Version des
+  Checkout-Interface hinzu. Siehe PR für Screenshots und Videovorschau.
 
-- [BOLTs #1032][] allows the ultimate receiver of a payment
-  ([HTLC][topic HTLC]) to accept a greater amount than they requested
-  and with a longer time before it expires than they requested.  This
-  makes it more difficult for a forwarding node to determine that the
-  next hop is the receiver by slightly tweaking a payment's parameters.
-  See the description of Eclair #2468 above for more information.
+- [BOLTs #1032][] erlaubt es dem Endempfänger einer Zahlung ([HTLC][topic HTLC]),
+  einen grösseren Betrag als angefordert, mit einer längeren Zeitspanne, zu
+  akzeptieren bevor diese abläuft. Dadurch wird es für einen
+  Weiterleitungsknoten schwieriger, durch eine geringfügige Änderung
+  der Parameter einer Zahlung festzustellen, dass der nächste Hop der Empfänger
+  ist. Siehe die Beschreibung von Eclair #2468 oben für weitere Informationen.
 
 {% include references.md %}
 {% include linkers/issues.md v=2 issues="26438,26419,5674,2404,2468,2469,2362,2441,7100,1761,1743,4157,1032,1021,999,26398,11423" %}
